@@ -383,75 +383,130 @@
         }
 
         /* Interactive Timeline */
-        .timeline {
+      .timeline {
             position: relative;
-            margin: 80px 0;
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+            padding-left: 60px;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 30px;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #4ade80, #22c55e);
-            transform: translateX(-50%);
+            width: 4px;
+            background: linear-gradient(180deg, #52b788, #2d6a4f);
+            border-radius: 2px;
         }
 
         .timeline-item {
+            position: relative;
+            margin: 3rem 0;
             display: flex;
             align-items: center;
-            margin-bottom: 60px;
-            opacity: 0;
-            animation: fadeInTimeline 0.8s ease-out forwards;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
-        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
-        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
-        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
-
-        @keyframes fadeInTimeline {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .timeline-content {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 0 30px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, #52b788, #2d6a4f);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-left: 40px;
+            position: relative;
             transition: all 0.3s ease;
         }
 
         .timeline-content:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: scale(1.02);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-content h3 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            color: white ;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-content p strong {
+            color: #52b788;
+            font-weight: 600;
         }
 
         .timeline-dot {
+            position: absolute;
+            left: 30px;
             width: 20px;
             height: 20px;
-            background: #4ade80;
+            background: linear-gradient(135deg, #52b788, #2d6a4f);
+            border: 4px solid white;
             border-radius: 50%;
-            position: relative;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 12px rgba(82, 183, 136, 0.4);
             z-index: 2;
-            box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
         }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* Timeline arrow pointing from line to content */
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-right: 15px solid white;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        /* Responsive timeline */
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 60px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                margin-left: 30px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+
 
         /* 3D Crop Showcase */
         .crop-showcase {
