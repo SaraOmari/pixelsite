@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
         
-        .logo-svg {
+         .logo-svg {
             width: 150px;
             height: 150px;
             filter: drop-shadow(0 5px 15px rgba(27, 67, 50, 0.2));
@@ -84,19 +84,21 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(135deg, #4ade80, #22c55e);
+            background: linear-gradient(135deg, #4ade80 ,#4ade80 );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: flex;
             align-items: center;
             gap: 12px;
+           box-shadow: 0 4px 6px black (0, 0, 0, 0.1);
+           border-radius: 5px;
+
         }
         
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #4ade80, #22c55e);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -771,7 +773,10 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <div class="logo-icon">🌱</div>
+                <div class="logo-icon">     
+                    <svg class="logo-svg" ><img src="C:\Users\AcerLAPTOP\Desktop\pixelsite\Leaf & Go.png" style="width: 50px;             border-radius: 100%; margin-top:20px">
+                    </svg>  <!-- Outer ring with gradient -->
+</div>
                 Jordan AgriTech Hub
             </div>
             
