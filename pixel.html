@@ -16,6 +16,17 @@
             overflow-x: hidden;
         }
 
+         .logo-svg {
+            width: 150px;
+            height: 150px;
+            filter: drop-shadow(0 5px 15px rgba(27, 67, 50, 0.2));
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .logo-svg:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
         /* Animated Background */
         .bg-animation {
             position: fixed;
@@ -758,12 +769,87 @@
     </style>
 </head>
 <body>
+     <svg class="logo-svg" viewBox="0 0 120 120" xmlns="C:\Users\AcerLAPTOP\Downloads\Leaf & Go.png"></svg>  <!-- Outer ring with gradient -->
+        <circle cx="60" cy="60" r="56" fill="url(#logoGradient)" stroke="url(#borderGradient)" stroke-width="3"/>
+        
+        <!-- Inner tech ring -->
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#2d6a4f" stroke-width="1.5" opacity="0.6"/>
+        
+        <!-- Central agricultural symbol -->
+        <g transform="translate(60,60)">
+            <!-- Main wheat stalk -->
+            <path d="M0,-40 Q-1,-30 0,-20 Q1,-10 0,0 Q-1,10 0,20 Q1,30 0,35" 
+                  stroke="#1b4332" stroke-width="3" fill="none" stroke-linecap="round"/>
+            
+            <!-- Left wheat stalk -->
+            <path d="M-18,-35 Q-20,-25 -18,-15 Q-16,-5 -18,5 Q-20,15 -18,25" 
+                  stroke="#2d6a4f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            
+            <!-- Right wheat stalk -->
+            <path d="M18,-35 Q20,-25 18,-15 Q16,-5 18,5 Q20,15 18,25" 
+                  stroke="#2d6a4f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            
+            <!-- Wheat grains -->
+            <ellipse cx="-4" cy="-30" rx="3" ry="5" fill="#52b788" transform="rotate(-25)" opacity="0.9"/>
+            <ellipse cx="4" cy="-25" rx="3" ry="5" fill="#74c69d" transform="rotate(25)" opacity="0.9"/>
+            <ellipse cx="-4" cy="-20" rx="3" ry="5" fill="#52b788" transform="rotate(-25)" opacity="0.9"/>
+            <ellipse cx="4" cy="-15" rx="3" ry="5" fill="#74c69d" transform="rotate(25)" opacity="0.9"/>
+            <ellipse cx="-4" cy="-10" rx="3" ry="5" fill="#52b788" transform="rotate(-25)" opacity="0.9"/>
+            <ellipse cx="4" cy="-5" rx="3" ry="5" fill="#74c69d" transform="rotate(25)" opacity="0.9"/>
+            <ellipse cx="-4" cy="0" rx="3" ry="5" fill="#52b788" transform="rotate(-25)" opacity="0.9"/>
+            <ellipse cx="4" cy="5" rx="3" ry="5" fill="#74c69d" transform="rotate(25)" opacity="0.9"/>
+            
+            <!-- Technology elements -->
+            <circle cx="-25" cy="20" r="4" fill="none" stroke="#40916c" stroke-width="2"/>
+            <circle cx="25" cy="20" r="4" fill="none" stroke="#40916c" stroke-width="2"/>
+            <circle cx="0" cy="25" r="3" fill="#40916c"/>
+            
+            <!-- Connecting lines -->
+            <path d="M-21,20 L-8,20 M8,20 L21,20" stroke="#40916c" stroke-width="2"/>
+            <path d="M0,22 L0,18" stroke="#40916c" stroke-width="2"/>
+            
+            <!-- Digital elements -->
+            <rect x="-30" y="10" width="6" height="2" fill="#52b788" opacity="0.7"/>
+            <rect x="-30" y="13" width="4" height="2" fill="#52b788" opacity="0.7"/>
+            <rect x="24" y="10" width="6" height="2" fill="#52b788" opacity="0.7"/>
+            <rect x="26" y="13" width="4" height="2" fill="#52b788" opacity="0.7"/>
+            
+            <!-- Innovation arrows -->
+            <path d="M-35,-10 L-30,-5 L-35,0" stroke="#74c69d" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M35,-10 L30,-5 L35,0" stroke="#74c69d" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </g>
+        
+        <!-- Decorative dots -->
+        <g transform="translate(60,60)">
+            <circle cx="0" cy="-50" r="2" fill="#52b788" opacity="0.8"/>
+            <circle cx="-15" cy="-47" r="1.5" fill="#74c69d" opacity="0.6"/>
+            <circle cx="15" cy="-47" r="1.5" fill="#74c69d" opacity="0.6"/>
+            <circle cx="-50" cy="0" r="2" fill="#52b788" opacity="0.8"/>
+            <circle cx="50" cy="0" r="2" fill="#52b788" opacity="0.8"/>
+            <circle cx="-20" cy="45" r="1.5" fill="#74c69d" opacity="0.6"/>
+            <circle cx="20" cy="45" r="1.5" fill="#74c69d" opacity="0.6"/>
+        </g>
+        
+        <!-- Gradients -->
+        <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#d8f3dc;stop-opacity:0.95" />
+                <stop offset="50%" style="stop-color:#95d5b2;stop-opacity:0.9" />
+                <stop offset="100%" style="stop-color:#74c69d;stop-opacity:0.85" />
+            </linearGradient>
+            <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#2d6a4f" />
+                <stop offset="100%" style="stop-color:#1b4332" />
+            </linearGradient>
+        </defs>
+    </svg>
+
     <div class="bg-animation"></div>
 
     <header>
         <div class="header-content">
             <div class="logo">
-                <div class="logo-icon">🌱</div>
+                <div class="logo-icon"><img src="C:\Users\AcerLAPTOP\Downloads\Leaf & Go.png" style="width: 50px; border-radius: 100%;"></div>
                 Jordan AgriTech Hub
             </div>
             <nav>
@@ -1118,7 +1204,7 @@
         </div>
     </section>
  <!-- Contact Section -->
-    <section class="section" id="contact">
+  <!-- <section class="section" id="contact">
         <div class="section-header">
             <h2 class="section-title">Contact Us</h2>
             <p>Reach out for collaborations, insights, or training sessions.</p>
@@ -1138,9 +1224,10 @@
             </div>
         </div>
     </section>
-    <div class="fab" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">⬆️</div>
+    --> 
 
     <script>
+        
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
