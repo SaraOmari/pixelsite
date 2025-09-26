@@ -417,6 +417,8 @@
         <div class="data-viz">
             <div class="viz-card">
                 <div class="viz-icon">📊</div>
+<canvas id="chartRainfed" width="100" height="100"></canvas>
+
                 <h3 class="viz-title">Rainfed Agriculture</h3>
                 <div class="viz-value">89%</div>
                 <p class="viz-description">Majority of farming operations depend on seasonal rainfall patterns, concentrated in northern highlands with optimal precipitation levels.</p>
@@ -424,6 +426,8 @@
 
             <div class="viz-card">
                 <div class="viz-icon">💧</div>
+<canvas id="chartIrrigated" width="100" height="100"></canvas>
+
                 <h3 class="viz-title">Irrigated Systems</h3>
                 <div class="viz-value">11%</div>
                 <p class="viz-description">High-efficiency irrigation networks in Jordan Valley and selected highland regions utilizing advanced water management technologies.</p>
@@ -431,6 +435,8 @@
 
             <div class="viz-card">
                 <div class="viz-icon">🏞️</div>
+<canvas id="chartCultivated" width="100" height="100"></canvas>
+
                 <h3 class="viz-title">Cultivated Area</h3>
                 <div class="viz-value">240K</div>
                 <p class="viz-description">Hectares of actively managed agricultural land supporting diverse crop production and sustainable farming practices.</p>
@@ -438,12 +444,16 @@
 
             <div class="viz-card">
                 <div class="viz-icon">👨‍🌾</div>
+<canvas id="chartSmallFarms" width="100" height="100"></canvas>
+
                 <h3 class="viz-title">Small Farms</h3>
                 <div class="viz-value">65%</div>
                 <p class="viz-description">Family-operated agricultural units under 10 hectares driving local food production and rural economy sustainability.</p>
             </div>
             <div class="viz-card">
                 <div class="viz-icon">💰</div>
+<canvas id="chartEconomic" width="100" height="100"></canvas>
+
                 <h3 class="viz-title">Economic Impact</h3>
                 <div class="viz-value">23%</div>
                 <p class="viz-description">Agricultural sector's contribution to national GDP and employment, supporting rural communities and food security initiatives.</p>
@@ -451,6 +461,8 @@
 
             <div class="viz-card">
                 <div class="viz-icon">🌧️</div>
+<canvas id="chartRainfall" width="100" height="100"></canvas>
+
                 <h3 class="viz-title">Annual Rainfall</h3>
                 <div class="viz-value">180mm</div>
                 <p class="viz-description">Average precipitation varies dramatically across regions, from 600mm in the north to less than 50mm in desert areas.</p>
@@ -459,6 +471,7 @@
     </section>
 
     <div class="fab" onclick="scrollToTop()">↑</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         function toggleMenu() {
@@ -473,6 +486,7 @@
                 document.body.style.overflow = 'auto';
             }
         }
+
 
         document.getElementById('hamburger').addEventListener('click', toggleMenu);
 
@@ -517,6 +531,40 @@
                 observer.observe(card);
             });
         });
+document.addEventListener('DOMContentLoaded', function() {
+    const chartData = [
+        {id:'chartRainfed', value: 89, color:'#4ade80'},
+        {id:'chartIrrigated', value: 11, color:'#22c55e'},
+        {id:'chartCultivated', value: 75, color:'#3b82f6'},
+        {id:'chartSmallFarms', value: 65, color:'#16a34a'},
+        {id:'chartEconomic', value: 23, color:'#f59e0b'},
+        {id:'chartRainfall', value: 30, color:'#3b82f6'},
+    ];
+
+    chartData.forEach(item => {
+        const ctx = document.getElementById(item.id).getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Value', 'Other'],
+                datasets: [{
+                    data: [item.value, 100 - item.value],
+                    backgroundColor: [item.color, '#1a5f4a'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }
+                }
+            }
+        });
+    });
+});
+
     </script>
 </body>
 </html>
+
