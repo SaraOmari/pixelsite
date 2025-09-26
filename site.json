@@ -1,0 +1,60 @@
+{
+  "site": {
+    "title": "Jordan AgriTech Hub",
+    "logo": "pixelsite/Leaf & Go.png",
+    "description": "Advanced agricultural technology solutions for Jordan's farming sector",
+    "pages": [
+      {
+        "id": "index",
+        "title": "Home",
+        "url": "index.html",
+        "description": "Welcome to Jordan AgriTech Hub - Your gateway to smart agriculture"
+      },
+      {
+        "id": "analytics",
+        "title": "Analytics",
+        "url": "analytics.html",
+        "description": "Real-time insights into Jordan's agricultural landscape"
+      },
+      {
+        "id": "irrigation",
+        "title": "Irrigation",
+        "url": "irrigation.html",
+        "description": "Advanced water management technologies optimizing every drop"
+      },
+      {
+        "id": "crops",
+        "title": "Biodiversity",
+        "url": "crops.html",
+        "description": "From abundant staples to rare heritage varieties preserving Jordan's agricultural DNA"
+      },
+      {
+        "id": "vertical",
+        "title": "Vertical Farms",
+        "url": "vertical.html",
+        "description": "Interactive 3D model of Jordan's most advanced vertical farming facilities"
+      },
+      {
+        "id": "diseases",
+        "title": "Disease Control",
+        "url": "diseases.html",
+        "description": "AI-powered disease detection and management systems"
+      },
+      {
+        "id": "contact",
+        "title": "Contact",
+        "url": "contact.html",
+        "description": "Get in touch with our agricultural technology experts"
+      }
+    ],
+    "contact": {
+      "email": "info@jordan-agritech.com",
+      "phone": "+962-6-500-0000",
+      "address": "Amman, Jordan",
+      "social": {
+        "linkedin": "https://linkedin.com/company/jordan-agritech",
+        "twitter": "https://twitter.com/jordan_agritech"
+      }
+    }
+  }
+}

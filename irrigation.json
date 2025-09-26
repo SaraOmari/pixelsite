@@ -1,0 +1,46 @@
+{
+  "timeline": [
+    {
+      "year": "1950s",
+      "title": "Traditional Systems",
+      "description": "Basic flood irrigation from Jordan River and seasonal wadis, limited to valley regions with natural water sources.",
+      "icon": "🌊"
+    },
+    {
+      "year": "1970s",
+      "title": "King Abdullah Canal",
+      "description": "Major infrastructure project diverting water from Yarmouk River, enabling large-scale irrigation in northern regions.",
+      "icon": "🏗️"
+    },
+    {
+      "year": "1980s",
+      "title": "Drip Irrigation Introduction",
+      "description": "Adoption of modern drip systems in greenhouses, revolutionizing water efficiency in vegetable production.",
+      "icon": "💧"
+    },
+    {
+      "year": "1990s",
+      "title": "Groundwater Development",
+      "description": "Extensive well drilling and groundwater extraction to supplement surface water sources during drought periods.",
+      "icon": "🕳️"
+    },
+    {
+      "year": "2000s",
+      "title": "Smart Irrigation",
+      "description": "Introduction of automated systems with soil moisture sensors and weather-based controllers.",
+      "icon": "🤖"
+    },
+    {
+      "year": "2010s",
+      "title": "Precision Agriculture",
+      "description": "GPS-guided irrigation systems and variable rate technology optimizing water use across different soil types.",
+      "icon": "🎯"
+    },
+    {
+      "year": "2020s",
+      "title": "AI & IoT Integration",
+      "description": "Machine learning algorithms predicting irrigation needs, drone monitoring, and real-time water management.",
+      "icon": "🧠"
+    }
+  ]
+}

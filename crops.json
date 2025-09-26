@@ -1,0 +1,66 @@
+{
+  "abundant": [
+    {
+      "emoji": "🍅",
+      "name": "Tomatoes",
+      "description": "Leading vegetable export, year-round greenhouse production with advanced climate control systems"
+    },
+    {
+      "emoji": "🥒",
+      "name": "Cucumbers",
+      "description": "High-value greenhouse crop utilizing hydroponic systems in Jordan Valley's optimal growing conditions"
+    },
+    {
+      "emoji": "🌾",
+      "name": "Wheat",
+      "description": "Strategic grain crop covering 80% of cereal production, drought-resistant varieties for food security"
+    },
+    {
+      "emoji": "🫒",
+      "name": "Olives",
+      "description": "Ancient heritage crop with 60+ million trees, premium oil production and cultural significance"
+    },
+    {
+      "emoji": "🍇",
+      "name": "Grapes",
+      "description": "Premium table grapes and emerging wine industry, utilizing modern trellis systems"
+    },
+    {
+      "emoji": "🌶️",
+      "name": "Peppers",
+      "description": "High-value export crop, both sweet and hot varieties with extended harvest seasons"
+    }
+  ],
+  "heritage": [
+    {
+      "emoji": "🌸",
+      "name": "Black Iris",
+      "description": "National flower, critically endangered wildflower requiring conservation efforts and habitat protection"
+    },
+    {
+      "emoji": "🌿",
+      "name": "Wild Za'atar",
+      "description": "Overharvested medicinal herb, now cultivated commercially to preserve wild populations"
+    },
+    {
+      "emoji": "🌰",
+      "name": "Carob Trees",
+      "description": "Ancient drought-resistant species, traditional food source being revived for sustainable agriculture"
+    },
+    {
+      "emoji": "🌹",
+      "name": "Damask Rose",
+      "description": "Rare variety for premium rose water and oil production, limited cultivation in highland areas"
+    },
+    {
+      "emoji": "🌾",
+      "name": "Ancient Grains",
+      "description": "Emmer and einkorn wheat varieties, heritage seeds preserved for genetic diversity and nutrition"
+    },
+    {
+      "emoji": "🌵",
+      "name": "Desert Adaptives",
+      "description": "Native drought-resistant species including prickly pear and desert melons for climate resilience"
+    }
+  ]
+}
