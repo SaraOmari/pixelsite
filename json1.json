@@ -1,0 +1,36 @@
+{
+  "farmLevels": [
+    {
+      "id": "level1",
+      "name": "Level 1: Microgreens",
+      "icon": "🌱",
+      "color": "#4ade80"
+    },
+    {
+      "id": "level2",
+      "name": "Level 2: Herbs",
+      "icon": "🌿",
+      "color": "#4ade80"
+    }
+  ],
+  "diseases": [
+    {
+      "id": "tomato-blight",
+      "name": "Tomato Late Blight",
+      "pathogen": "Phytophthora infestans",
+      "risk": "Critical in humid conditions",
+      "detection": "AI image analysis + IoT sensors",
+      "treatment": "Targeted copper applications + resistant varieties",
+      "severity": "high"
+    },
+    {
+      "id": "wheat-rust",
+      "name": "Wheat Stripe Rust",
+      "pathogen": "Puccinia striiformis",
+      "risk": "Moderate, temperature dependent",
+      "detection": "Drone surveillance + spectral analysis",
+      "treatment": "Precision fungicide application",
+      "severity": "medium"
+    }
+  ]
+}
