@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Jordan AgriTech Hub</title>
     <style>
+       .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    z-index: 1001;
+    transition: width 0.1s ease-out;
+}
         body {
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -389,6 +399,8 @@
     </style>
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
+
     <div class="bg-animation"></div>
 
     <header>
@@ -458,6 +470,28 @@
     <div class="fab" onclick="scrollToTop()">↑</div>
 
     <script>
+         document.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('progressBar');
+    const scrollPosition = window.pageYOffset;
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = (scrollPosition / totalHeight) * 100;
+    progressBar.style.width = progress + '%';
+});
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+
+        document.getElementById('hamburger').addEventListener('click', toggleMenu);
         function toggleMenu() {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
