@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Jordan AgriTech Hub</title>
     <style>
-       .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 5px;
-    background: linear-gradient(90deg, #4ade80, #22c55e);
-    z-index: 1001;
-    transition: width 0.1s ease-out;
-}
         body {
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -25,6 +15,168 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+        #progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1001;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    transition: width 0.1s ease;
+}
+/* Splash Screen */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.splash-content {
+    text-align: center;
+    color: white;
+}
+
+.splash-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    animation: logo-spin 2s linear infinite;
+}
+
+@keyframes logo-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #4ade80;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.feedback-section {
+    padding: 80px 40px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.feedback-section .section-title {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #ffffff, #4ade80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.feedback-section .section-subtitle {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+}
+
+.feedback-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedback-section input,
+.feedback-section textarea {
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-size: 1rem;
+    resize: none;
+}
+
+.feedback-section input::placeholder,
+.feedback-section textarea::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+.feedback-section button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feedback-section button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(74,222,128,0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .feedback-section {
+        padding: 60px 20px;
+    }
+}
+
+/* Light Mode Styles */
+body.light-mode {
+    background: #f9fafb;
+    color: #0a0a0a;
+}
+
+body.light-mode header {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light-mode nav a {
+    color: rgba(0,0,0,0.8);
+}
+
+body.light-mode nav a:hover, 
+body.light-mode nav a.active {
+    color: #22c55e;
+    background: rgba(34,197,94,0.1);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+}
+
+body.light-mode .crop-card {
+    background: rgba(0,0,0,0.05);
+    color: #0a0a0a;
+}
+
+body.light-mode .section-title {
+    background: linear-gradient(135deg, #000000, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
         .bg-animation {
             position: fixed;
@@ -219,56 +371,6 @@
             line-height: 1.6;
         }
 
-        /* --- New form styles --- */
-        .complaint-form {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            gap: 20px;
-        }
-        
-        .complaint-form label {
-            font-weight: 600;
-            color: #4ade80;
-        }
-
-        .complaint-form textarea {
-            width: 100%;
-            height: 150px;
-            padding: 15px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            resize: vertical;
-            transition: all 0.3s ease;
-        }
-
-        .complaint-form textarea:focus {
-            outline: none;
-            border-color: #4ade80;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .complaint-form button {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-            color: #0a0a0a;
-            font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .complaint-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
-        }
-
         /* Navigation Styles */
         nav ul {
             list-style: none;
@@ -399,11 +501,32 @@
     </style>
 </head>
 <body>
-  <div class="progress-bar" id="progressBar"></div>
+    <div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
 
     <div class="bg-animation"></div>
 
     <header>
+        <button id="modeToggle" style="
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4ade80;
+    margin-left: 20px;
+">
+    🌙
+</button>
+<!-- Splash Screen -->
+<div id="splash-screen">
+    <div class="splash-content">
+        <img src="C:\Users\AcerLAPTOP\Downloads\Leaf & Go.png" alt="Logo" class="splash-logo">
+        <h1>Jordan AgriTech Hub</h1>
+        <div class="loader"></div>
+    </div>
+</div>
+
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">
@@ -412,6 +535,7 @@
                 Jordan AgriTech Hub
             </div>
 
+            <!-- Hamburger Menu -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -454,44 +578,26 @@
                 <h3 class="contact-title">Location</h3>
                 <p class="contact-info">Amman, Jordan</p>
             </div>
-
-            <div class="contact-card">
-                <span class="contact-icon">📝</span>
-                <h3 class="contact-title">Complaints</h3>
-                <form action="#" method="POST" class="complaint-form">
-                    <label for="complaint-text">Please write your complaint here:</label>
-                    <textarea id="complaint-text" name="complaint" rows="5" placeholder="Enter your feedback or complaint..."></textarea>
-                    <button type="submit">Submit Complaint</button>
-                </form>
-            </div>
-            </div>
+        </div>
     </section>
 
     <div class="fab" onclick="scrollToTop()">↑</div>
+<section class="feedback-section">
+    <div class="container">
+        <h2 class="section-title">Share Your Suggestions</h2>
+        <p class="section-subtitle">We value your feedback on food security initiatives in Jordan.</p>
+
+        <form id="feedbackForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message / Suggestion" required></textarea>
+            <button type="submit">Submit</button>
+            <p id="formMsg" style="margin-top:10px; color:#4ade80; display:none;">Thank you for your feedback!</p>
+        </form>
+    </div>
+</section>
 
     <script>
-         document.addEventListener('scroll', () => {
-    const progressBar = document.getElementById('progressBar');
-    const scrollPosition = window.pageYOffset;
-    const totalHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollPosition / totalHeight) * 100;
-    progressBar.style.width = progress + '%';
-});
-        function toggleMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-
-        document.getElementById('hamburger').addEventListener('click', toggleMenu);
         function toggleMenu() {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
@@ -522,7 +628,51 @@
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        // Dark/Light Mode Toggle
+const modeToggle = document.getElementById('modeToggle');
+
+modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    if (document.body.classList.contains('light-mode')) {
+        modeToggle.textContent = "☀️";
+    } else {
+        modeToggle.textContent = "🌙";
+    }
+});
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrollPercent + '%';
+});
+window.addEventListener('load', () => {
+    const splash = document.getElementById('splash-screen');
+    // اضبط وقت العرض إذا تريد (مثلاً 2 ثانية)
+    setTimeout(() => {
+        splash.style.opacity = '0';
+        splash.style.visibility = 'hidden';
+    }, 2000); // 2000ms = 2 seconds
+});
+const feedbackForm = document.getElementById('feedbackForm');
+const formMsg = document.getElementById('formMsg');
+
+feedbackForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // هنا يمكنك إرسال البيانات إلى خادم أو API
+    // حالياً فقط نظهر رسالة شكر مؤقتة
+    formMsg.style.display = 'block';
+
+    // إعادة تعيين الحقول بعد الإرسال
+    feedbackForm.reset();
+
+    // إخفاء رسالة الشكر بعد 3 ثواني
+    setTimeout(() => {
+        formMsg.style.display = 'none';
+    }, 3000);
+});
+
+
     </script>
 </body>
 </html>
-
