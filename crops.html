@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodiversity Portfolio - Jordan AgriTech Hub</title>
     <style>
-      .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 5px;
-    background: linear-gradient(90deg, #4ade80, #22c55e);
-    z-index: 1001;
-    transition: width 0.1s ease-out;
-}
         body {
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -24,7 +14,69 @@
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
-        }
+        }/* Splash Screen */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.splash-content {
+    text-align: center;
+    color: white;
+}
+
+.splash-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    animation: logo-spin 2s linear infinite;
+}
+
+@keyframes logo-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #4ade80;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1001;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    transition: width 0.1s ease;
+}
 
         .bg-animation {
             position: fixed;
@@ -78,6 +130,39 @@
             justify-content: space-between;
             align-items: center;
         }
+        /* Light Mode Styles */
+body.light-mode {
+    background: #f9fafb;
+    color: #0a0a0a;
+}
+
+body.light-mode header {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light-mode nav a {
+    color: rgba(0,0,0,0.8);
+}
+
+body.light-mode nav a:hover, 
+body.light-mode nav a.active {
+    color: #22c55e;
+    background: rgba(34,197,94,0.1);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+}
+
+body.light-mode .crop-card {
+    background: rgba(0,0,0,0.05);
+    color: #0a0a0a;
+}
+
+body.light-mode .section-title {
+    background: linear-gradient(135deg, #000000, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
         .logo {
             font-size: 24px;
@@ -178,11 +263,75 @@
             margin: 0 auto;
         }
 
+        .search-filter {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 40px 0;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px 20px;
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4ade80;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            border-radius: 50px;
+            background: transparent;
+            color: #4ade80;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #4ade80;
+            color: #0a0a0a;
+            border-color: #4ade80;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
         .crop-showcase {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin: 60px 0;
+        }
+
+        .crop-card.hidden {
+            display: none;
         }
 
         .crop-card {
@@ -364,11 +513,32 @@
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
+    <div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
 
     <div class="bg-animation"></div>
 
     <header>
+        <button id="modeToggle" style="
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4ade80;
+    margin-left: 20px;
+">
+    🌙
+</button>
+<!-- Splash Screen -->
+<div id="splash-screen">
+    <div class="splash-content">
+        <img src="C:\Users\AcerLAPTOP\Downloads\Leaf & Go.png" alt="Logo" class="splash-logo">
+        <h1>Jordan AgriTech Hub</h1>
+        <div class="loader"></div>
+    </div>
+</div>
+
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">
@@ -403,6 +573,23 @@
             <h2 class="section-title">Biodiversity Portfolio</h2>
             <p class="section-subtitle">From abundant staples to rare heritage varieties preserving Jordan's agricultural DNA</p>
         </div>
+<!-- Search & Filter -->
+<div style="text-align: center; margin: 40px 0;">
+    <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="🔍 Search crops..." 
+        style="padding: 12px 20px; border-radius: 30px; border: none; width: 250px; max-width: 80%;"
+    >
+    <select 
+        id="filterSelect" 
+        style="padding: 12px 20px; border-radius: 30px; border: none; margin-left: 15px;"
+    >
+        <option value="all">All</option>
+        <option value="abundant">Abundant</option>
+        <option value="rare">Rare</option>
+    </select>
+</div>
 
         <h3 style="color: #4ade80; font-size: 2rem; margin-bottom: 30px; text-align: center;">🌾 Abundant Crops</h3>
         <div class="crop-showcase">
@@ -476,28 +663,6 @@
     <div class="fab" onclick="scrollToTop()">↑</div>
 
     <script>
-         document.addEventListener('scroll', () => {
-    const progressBar = document.getElementById('progressBar');
-    const scrollPosition = window.pageYOffset;
-    const totalHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollPosition / totalHeight) * 100;
-    progressBar.style.width = progress + '%';
-});
-        function toggleMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-
-        document.getElementById('hamburger').addEventListener('click', toggleMenu);
         function toggleMenu() {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
@@ -527,7 +692,61 @@
 
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }// Search + Filter system
+const searchInput = document.getElementById('searchInput');
+const filterSelect = document.getElementById('filterSelect');
+const allCrops = document.querySelectorAll('.crop-card');
+
+function filterCrops() {
+    const searchText = searchInput.value.toLowerCase();
+    const filterValue = filterSelect.value;
+
+    allCrops.forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        const section = card.closest('.section').textContent.toLowerCase();
+
+        let matchesSearch = title.includes(searchText);
+        let matchesFilter = 
+            (filterValue === "all") ||
+            (filterValue === "abundant" && card.closest('.section').innerHTML.includes("Abundant Crops")) ||
+            (filterValue === "rare" && card.closest('.section').innerHTML.includes("Rare & Heritage"));
+
+        if (matchesSearch && matchesFilter) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
         }
+    });
+}
+
+searchInput.addEventListener('input', filterCrops);
+filterSelect.addEventListener('change', filterCrops);
+// Dark/Light Mode Toggle
+const modeToggle = document.getElementById('modeToggle');
+
+modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    if (document.body.classList.contains('light-mode')) {
+        modeToggle.textContent = "☀️";
+    } else {
+        modeToggle.textContent = "🌙";
+    }
+});
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrollPercent + '%';
+});
+window.addEventListener('load', () => {
+    const splash = document.getElementById('splash-screen');
+    // اضبط وقت العرض إذا تريد (مثلاً 2 ثانية)
+    setTimeout(() => {
+        splash.style.opacity = '0';
+        splash.style.visibility = 'hidden';
+    }, 2000); // 2000ms = 2 seconds
+});
+
     </script>
 </body>
 </html>
