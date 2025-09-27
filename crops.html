@@ -68,6 +68,39 @@
             justify-content: space-between;
             align-items: center;
         }
+        /* Light Mode Styles */
+body.light-mode {
+    background: #f9fafb;
+    color: #0a0a0a;
+}
+
+body.light-mode header {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light-mode nav a {
+    color: rgba(0,0,0,0.8);
+}
+
+body.light-mode nav a:hover, 
+body.light-mode nav a.active {
+    color: #22c55e;
+    background: rgba(34,197,94,0.1);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+}
+
+body.light-mode .crop-card {
+    background: rgba(0,0,0,0.05);
+    color: #0a0a0a;
+}
+
+body.light-mode .section-title {
+    background: linear-gradient(135deg, #000000, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
         .logo {
             font-size: 24px;
@@ -421,6 +454,17 @@
     <div class="bg-animation"></div>
 
     <header>
+        <button id="modeToggle" style="
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4ade80;
+    margin-left: 20px;
+">
+    🌙
+</button>
+
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">
@@ -603,6 +647,17 @@ function filterCrops() {
 
 searchInput.addEventListener('input', filterCrops);
 filterSelect.addEventListener('change', filterCrops);
+// Dark/Light Mode Toggle
+const modeToggle = document.getElementById('modeToggle');
+
+modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    if (document.body.classList.contains('light-mode')) {
+        modeToggle.textContent = "☀️";
+    } else {
+        modeToggle.textContent = "🌙";
+    }
+});
 
     </script>
 </body>
