@@ -209,6 +209,56 @@
             line-height: 1.6;
         }
 
+        /* --- New form styles --- */
+        .complaint-form {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 20px;
+        }
+        
+        .complaint-form label {
+            font-weight: 600;
+            color: #4ade80;
+        }
+
+        .complaint-form textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .complaint-form textarea:focus {
+            outline: none;
+            border-color: #4ade80;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .complaint-form button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #0a0a0a;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .complaint-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
         /* Navigation Styles */
         nav ul {
             list-style: none;
@@ -350,7 +400,6 @@
                 Jordan AgriTech Hub
             </div>
 
-            <!-- Hamburger Menu -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -393,7 +442,17 @@
                 <h3 class="contact-title">Location</h3>
                 <p class="contact-info">Amman, Jordan</p>
             </div>
-        </div>
+
+            <div class="contact-card">
+                <span class="contact-icon">📝</span>
+                <h3 class="contact-title">Complaints</h3>
+                <form action="#" method="POST" class="complaint-form">
+                    <label for="complaint-text">Please write your complaint here:</label>
+                    <textarea id="complaint-text" name="complaint" rows="5" placeholder="Enter your feedback or complaint..."></textarea>
+                    <button type="submit">Submit Complaint</button>
+                </form>
+            </div>
+            </div>
     </section>
 
     <div class="fab" onclick="scrollToTop()">↑</div>
@@ -432,3 +491,4 @@
     </script>
 </body>
 </html>
+
