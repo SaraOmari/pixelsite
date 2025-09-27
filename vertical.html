@@ -283,13 +283,25 @@
             z-index: 1001;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #4ade80;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+       /* Hamburger (desktop: hidden, mobile: flex) */
+.hamburger {
+    display: none; /* ما يظهر على الشاشات الكبيرة */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background: #4ade80;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
 
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
@@ -390,14 +402,19 @@
                 <span></span>
                 <span></span>
             </div>
-
-            <nav>
+<!-- داخل الـ header -->
+<nav>
                 <ul id="nav-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="analytics.html" class="nav-link">Analytics</a></li>
+                    <li><a href="analytics.html" class="nav-link active">Analytics</a></li>
                     <li><a href="irrigation.html" class="nav-link">Irrigation</a></li>
                     <li><a href="crops.html" class="nav-link">Biodiversity</a></li>
-                    <li><a href="vertical.html" class="nav-link active">Vertical Farms</a></li>
+                    <li><a href="vertical.html" class="nav-link">Vertical Farms</a></li>
+                    <li><a href="diseases.html" class="nav-link">Disease Control</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
         </div>
     </header>
 
@@ -533,6 +550,21 @@
         document.addEventListener('DOMContentLoaded', function() {
             showFarmLevel('level1'); // افتراضي عند تحميل الصفحة
         });
+         const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // عشان لما المستخدم يضغط على أي لينك، القائمة تختفي
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
         </script>
         
     
