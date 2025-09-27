@@ -168,11 +168,75 @@
             margin: 0 auto;
         }
 
+        .search-filter {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 40px 0;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px 20px;
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4ade80;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            border-radius: 50px;
+            background: transparent;
+            color: #4ade80;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #4ade80;
+            color: #0a0a0a;
+            border-color: #4ade80;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+        }
+
         .crop-showcase {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin: 60px 0;
+        }
+
+        .crop-card.hidden {
+            display: none;
         }
 
         .crop-card {
@@ -391,6 +455,23 @@
             <h2 class="section-title">Biodiversity Portfolio</h2>
             <p class="section-subtitle">From abundant staples to rare heritage varieties preserving Jordan's agricultural DNA</p>
         </div>
+<!-- Search & Filter -->
+<div style="text-align: center; margin: 40px 0;">
+    <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="🔍 Search crops..." 
+        style="padding: 12px 20px; border-radius: 30px; border: none; width: 250px; max-width: 80%;"
+    >
+    <select 
+        id="filterSelect" 
+        style="padding: 12px 20px; border-radius: 30px; border: none; margin-left: 15px;"
+    >
+        <option value="all">All</option>
+        <option value="abundant">Abundant</option>
+        <option value="rare">Rare</option>
+    </select>
+</div>
 
         <h3 style="color: #4ade80; font-size: 2rem; margin-bottom: 30px; text-align: center;">🌾 Abundant Crops</h3>
         <div class="crop-showcase">
@@ -493,7 +574,36 @@
 
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }// Search + Filter system
+const searchInput = document.getElementById('searchInput');
+const filterSelect = document.getElementById('filterSelect');
+const allCrops = document.querySelectorAll('.crop-card');
+
+function filterCrops() {
+    const searchText = searchInput.value.toLowerCase();
+    const filterValue = filterSelect.value;
+
+    allCrops.forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        const section = card.closest('.section').textContent.toLowerCase();
+
+        let matchesSearch = title.includes(searchText);
+        let matchesFilter = 
+            (filterValue === "all") ||
+            (filterValue === "abundant" && card.closest('.section').innerHTML.includes("Abundant Crops")) ||
+            (filterValue === "rare" && card.closest('.section').innerHTML.includes("Rare & Heritage"));
+
+        if (matchesSearch && matchesFilter) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
         }
+    });
+}
+
+searchInput.addEventListener('input', filterCrops);
+filterSelect.addEventListener('change', filterCrops);
+
     </script>
 </body>
 </html>
