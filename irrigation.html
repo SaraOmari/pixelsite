@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Irrigation Systems - Jordan AgriTech Hub</title>
     <style>
-            .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 5px;
-    background: linear-gradient(90deg, #4ade80, #22c55e);
-    z-index: 1001;
-    transition: width 0.1s ease-out;
-}
         body {
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -25,6 +15,38 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+/* Light Mode Styles */
+body.light-mode {
+    background: #f9fafb;
+    color: #0a0a0a;
+}
+
+body.light-mode header {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light-mode nav a {
+    color: rgba(0,0,0,0.8);
+}
+
+body.light-mode nav a:hover, 
+body.light-mode nav a.active {
+    color: #22c55e;
+    background: rgba(34,197,94,0.1);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+}
+
+body.light-mode .crop-card {
+    background: rgba(0,0,0,0.05);
+    color: #0a0a0a;
+}
+
+body.light-mode .section-title {
+    background: linear-gradient(135deg, #000000, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
         .bg-animation {
             position: fixed;
@@ -419,14 +441,100 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, #22c55e, #16a34a);
         }
+        #progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1001;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    transition: width 0.1s ease;
+}
+
+/* Splash Screen */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.splash-content {
+    text-align: center;
+    color: white;
+}
+
+.splash-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    animation: logo-spin 2s linear infinite;
+}
+
+@keyframes logo-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #4ade80;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
+    <div id="progress-container">
+    <div id="progress-bar"></div>
+</div>
 
     <div class="bg-animation"></div>
 
     <header>
+        <button id="modeToggle" style="
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4ade80;
+    margin-left: 20px;
+">
+    🌙
+</button>
+<!-- Splash Screen -->
+<div id="splash-screen">
+    <div class="splash-content">
+        <img src="C:\Users\AcerLAPTOP\Downloads\Leaf & Go.png" alt="Logo" class="splash-logo">
+        <h1>Jordan AgriTech Hub</h1>
+        <div class="loader"></div>
+    </div>
+</div>
+
+
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon">
@@ -502,60 +610,63 @@
     </section>
 
     <div class="fab" onclick="scrollToTop()">↑</div>
+<script>
+    // Toggle Menu
+    function toggleMenu() {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
 
-    <script>
-        document.addEventListener('scroll', () => {
-    const progressBar = document.getElementById('progressBar');
-    const scrollPosition = window.pageYOffset;
-    const totalHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollPosition / totalHeight) * 100;
-    progressBar.style.width = progress + '%';
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    document.getElementById('hamburger').addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', function(event) {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (window.innerWidth <= 768 &&
+            navMenu.classList.contains('active') &&
+            !hamburger.contains(event.target) &&
+            !navMenu.contains(event.target)) {
+            toggleMenu();
+        }
+    });
+
+    // Scroll To Top Button
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toggle Light/Dark Mode
+    document.getElementById("modeToggle").addEventListener("click", function() {
+        document.body.classList.toggle("light-mode");
+        this.textContent = document.body.classList.contains("light-mode") ? "🌞" : "🌙";
+    });
+    window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrollPercent + '%';
 });
-        function toggleMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
+window.addEventListener('load', () => {
+    const splash = document.getElementById('splash-screen');
+    // اضبط وقت العرض إذا تريد (مثلاً 2 ثانية)
+    setTimeout(() => {
+        splash.style.opacity = '0';
+        splash.style.visibility = 'hidden';
+    }, 2000); // 2000ms = 2 seconds
+});
 
 
-        document.getElementById('hamburger').addEventListener('click', toggleMenu);
-        function toggleMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
+</script>
 
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        document.getElementById('hamburger').addEventListener('click', toggleMenu);
-
-        document.addEventListener('click', function(event) {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-
-            if (window.innerWidth <= 768 &&
-                navMenu.classList.contains('active') &&
-                !hamburger.contains(event.target) &&
-                !navMenu.contains(event.target)) {
-                toggleMenu();
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
